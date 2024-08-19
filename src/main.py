@@ -1,5 +1,5 @@
 from frota import *
-import pickle
+
 def operar_carro(carro : Carro):
         print('1- Ligar motor')
         print('2- Desligar motor')
@@ -23,39 +23,21 @@ if __name__ == "__main__":
     nm_modelo = input('Digite o modelo: ')
     nm_marca = input('Digite a marca: ')
     nm_cor = input('Digite a cor: ')
-    litros = float(input('Quantos Litros tem no tanque'))
-    cm = float(input('Qual consumo médio do carro: '))
+
     kms = float(input('Digite com quantos Kms: '))
 
-    carro1 = Carro(nm_modelo, nm_marca, nm_cor, 0, False, litros, cm)
+    carro1 = Carro(nm_modelo, nm_marca, nm_cor, 0, False)
 
     print('Cadastre o segundo carro')
     nm_modelo = input('Digite o modelo: ')
     nm_marca = input('Digite a marca: ')
     nm_cor = input('Digite a cor: ')
-    litros = float(input('Quantos Litros tem no tanque'))
-    cm = float(input('Qual consumo médio do carro: '))
-    kms = float(input('Digite com quantos Kms: '))
+    carro2 = Carro(nm_modelo, nm_marca, nm_cor, 0, False)
 
-    carro2 = Carro(nm_modelo, nm_marca, nm_cor, 0, False, litros, cm)
-
-    carros = {}
-    carros[id(carro1)] = carro1
-    carros[id(carro2)] = carro2
-
-    try:
-        with open('carros.pkl', 'wb') as arquivo:
-            carros = pickle.dump(carros, arquivo)
-    except Exception as e:
-        print(e)
-
-    try:
-        with open('carros.pkl', 'rb') as arquivo:
-            carros = pickle.load(arquivo)
-    except Exception as e:
-        print(e)
-
-    while carro1.getOdometro() < 600 and carro2.getOdometro() < 600 and (carro1.getTanque() >0 or carro2.getTanque()>0):
+    '''
+    Controlando o carro até ele atingir 10000 Km
+    '''
+    while carro1.odometro < 600 and carro2.odometro < 600:
         try:
             op = 0
             while op not in (1,2):
@@ -66,9 +48,8 @@ if __name__ == "__main__":
             else:
                 operar_carro(carro2)
 
-            print('Informações atuais do carro')
+            print('Infos atuais do carro')
             print(carro1)
-            print(carro2)
         except Exception as e:
             print("Erro!")
             print(e)
@@ -77,3 +58,4 @@ if __name__ == "__main__":
     carro2.desligar()
     print(carro1)
     print(carro2)
+
