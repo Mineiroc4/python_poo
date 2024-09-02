@@ -60,11 +60,11 @@ class Carro:
                 f'nível do tanque {self.__tanque} L')
         return info
 
-    '''def __repr__(self):
+    def __repr__(self):
         return f'Carro(modelo="{self.modelo}", marca="{self.marca}",cor="{self.cor}",' \
                f'odometro={self.__odometro}, motor_on="{self.__motor_on}", tanque="{self.__tanque},' \
                f' consumo_medio="{self.consumo_medio}'
-'''
+
 
 
 
