@@ -51,6 +51,7 @@ class Carro:
 
     def getMotoron(self):
         return self.__motor_on
+
     def __str__(self):
         info = (f'Carro {self.modelo}, marca {self.marca}, '
                 f'cor {self.cor}\n{self.__odometro} Km, '
