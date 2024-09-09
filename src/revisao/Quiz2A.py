@@ -1,2 +1,0 @@
-from Quiz import *
-
