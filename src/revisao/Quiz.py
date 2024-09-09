@@ -25,3 +25,17 @@ class Quiz:
         info += f'Acertos = {self.__acertos}\n'
         info += f'Total de pontos = {self.calcular_pontos()}\n'
         return info
+
+class Quiz2A(Quiz):
+    def __init__(self, disciplina, aluno, acertos, erros):
+        super().__init__(disciplina, aluno, acertos, erros)
+
+    def calcular_pontos(self):
+        return self.get_acertos() - (4* self.get_erros())
+
+class Quiz3A(Quiz):
+    def __init__(self, disciplina, aluno, acertos, erros):
+        super().__init__(disciplina, aluno, acertos, erros)
+
+    def calcular_pontos(self):
+        return self.get_acertos() - (2* self.get_erros())
