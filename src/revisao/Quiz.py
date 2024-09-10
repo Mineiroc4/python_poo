@@ -46,6 +46,9 @@ class Aluno:
         self.__nome = nome
         self.__quizes = kahoots
 
+    def get_matricula(self):
+        return self.__matricula
+
     def __str__(self):
         info = (f'Matricula: {self.__matricula}\n'
                 f'Nome: {self.__nome}\n')
@@ -55,4 +58,30 @@ class Aluno:
         info += f'Total de pontos = {total}\n'
         return info
 
+class Disciplina:
+    __nome: str
+    __professor: str
+    __ano: int
+    __semestre: int
+    __alunos: List[Aluno] = []
 
+    def __init__(self, nome: str, professor: str, ano: int, semestre: int):
+        self.__nome = nome
+        self.__professor = professor
+        self.__ano = ano
+        self.__semestre = semestre
+
+    def add_aluno(self, a: Aluno):
+        for aluno in self.__alunos:
+            if a.get_matricula() == aluno.get_matricula():
+                raise Exception("Aluno já existe!")
+
+        self.__alunos.append(a)
+
+    def __str__(self):
+        info = (f'Disciplina: {self.__nome}\n'
+                f'Professor: {self.__professor}\n'
+                f'Ano/Semestre: {self.__ano}/{self.__semestre}')
+        for aluno in self.__alunos:
+            info += f'{aluno.__str__()}'
+        return info

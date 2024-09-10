@@ -15,3 +15,16 @@ if __name__ == "__main__":
 
     aluno1 = Aluno(1,"Rafael", lista_quiz)
     print(aluno1)
+
+    aluno2 = Aluno(2, "Rafael2", lista_quiz)
+
+    aluno3 = Aluno(1, "RafaelFake", lista_quiz)
+
+    poo = Disciplina("POO", "Ferauche", 2024,2)
+    poo.add_aluno(aluno1)
+    poo.add_aluno(aluno2)
+    '''
+    teste para causar erro de aluno já existente caso tente inserir um aluno com mesma matrícula ou instanciar o mesmo aluno novamente.
+    poo.add_aluno(aluno3)
+    '''
+    print(poo)
