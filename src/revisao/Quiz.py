@@ -1,12 +1,10 @@
+from typing import List
+
 class Quiz:
-    disciplina: str
-    aluno: str
     __acertos: int
     __erros: int
 
-    def __init__(self, disciplina, aluno, acertos, erros):
-        self.disciplina = disciplina
-        self.aluno = aluno
+    def __init__(self, acertos, erros):
         self.__acertos = acertos
         self.__erros = erros
 
@@ -20,22 +18,41 @@ class Quiz:
         return self.__acertos - self.__erros
 
     def __str__(self):
-        info = f'Discplina = {self.disciplina}\n'
-        info += f'Aluno = {self.aluno}\n'
-        info += f'Acertos = {self.__acertos}\n'
+        info = f'Acertos = {self.__acertos}\n'
         info += f'Total de pontos = {self.calcular_pontos()}\n'
         return info
 
 class Quiz2A(Quiz):
-    def __init__(self, disciplina, aluno, acertos, erros):
-        super().__init__(disciplina, aluno, acertos, erros)
+    def __init__(self, acertos, erros):
+        super().__init__(acertos, erros)
 
     def calcular_pontos(self):
         return self.get_acertos() - (4* self.get_erros())
 
 class Quiz3A(Quiz):
-    def __init__(self, disciplina, aluno, acertos, erros):
-        super().__init__(disciplina, aluno, acertos, erros)
+    def __init__(self, acertos, erros):
+        super().__init__(acertos, erros)
 
     def calcular_pontos(self):
         return self.get_acertos() - (2* self.get_erros())
+
+class Aluno:
+    __matricula: int
+    __nome: str
+    __quizes: List[Quiz]
+
+    def __init__(self, matricula: int, nome: str, kahoots: List[Quiz]):
+        self.__matricula = matricula
+        self.__nome = nome
+        self.__quizes = kahoots
+
+    def __str__(self):
+        info = (f'Matricula: {self.__matricula}\n'
+                f'Nome: {self.__nome}\n')
+        total = 0
+        for q in self.__quizes:
+            total += q.calcular_pontos()
+        info += f'Total de pontos = {total}\n'
+        return info
+
+
